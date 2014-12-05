@@ -1,0 +1,113 @@
+<html>
+<head>
+	<title>Bootstrap validation</title>
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
+	
+</head>
+<body>
+
+
+	<div class="container">
+		
+
+<form id="alwaysEnableButtonForm" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Task</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" name="task" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Description</label>
+        <div class="col-sm-5">
+            <textarea class="form-control" name="description" rows="5"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Priority</label>
+        <div class="col-sm-5">
+            <select class="form-control" name="priority" style="width: 200px;">
+                <option value="">Choose the priority</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-5 col-sm-offset-3">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+</form>
+
+
+	</div>
+
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+
+	<script type="text/javascript">
+
+
+	
+
+$(document).ready(function() {
+    $('#alwaysEnableButtonForm')
+        .bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                task: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The task is required'
+                        }
+                    }
+                },
+                description: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The description is required'
+                        }
+                    }
+                },
+                priority: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The priority is required'
+                        }
+                    }
+                }
+            }
+        })
+        .on('error.field.bv', function(e, data) {
+            // $(e.target)  --> The field element
+            // data.bv      --> The BootstrapValidator instance
+            // data.field   --> The field name
+            // data.element --> The field element
+
+            data.bv.disableSubmitButtons(false);
+        })
+        .on('success.field.bv', function(e, data) {
+            // e, data parameters are the same as in error.field.bv event handler
+            // Despite that the field is valid, by default, the submit button will be disabled if all the following conditions meet
+            // - The submit button is clicked
+            // - The form is invalid
+            data.bv.disableSubmitButtons(false);
+        });
+});
+
+
+    
+
+</script>
+</body>
+</html>
