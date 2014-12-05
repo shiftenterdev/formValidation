@@ -1,0 +1,42 @@
+<html>
+<head>
+	<title>Sample Javascript</title>
+</head>
+<body>
+	<div>
+		<form id="myform" method="POST">
+			<label for="name">Name</label>
+			<input required="required" type="text" id="name">
+
+			<label for="email">Email</label>
+			<input required="required" type="email" id="email">
+
+			<label for="confirm">Confirm</label>
+			<input required="required" type="checkbox" id="confirm">
+
+			<input type="submit" value="Submit">
+		</form>
+
+	</div>
+
+	<script type="text/javascript">
+
+	function showMessage()
+	{
+		document.getElementById("myform").onsubmit = function()
+		{
+			if(document.getElementById("confirm").checked == false)
+			{
+				alert("Error");
+				return false;
+			}
+		}
+	}
+
+	window.onload = function()
+	{
+		showMessage();
+	}
+	</script>
+</body>
+</html>
