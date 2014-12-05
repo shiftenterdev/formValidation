@@ -1,2 +1,7 @@
-formValidation
-==============
+FORM VALIDATION
+===============
+
+BOOTSTRAP & JAVASCRIPT
+----------------------
+
+### Iftakharul Alam
